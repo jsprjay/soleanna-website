@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf7f2;
+  --foreground: #161616;
+
+  /* Brand palette (pulled from the logo + schedule graphics) */
+  --brand-orange: #f7951e;
+  --brand-orange-deep: #de7a12;
+  --brand-dark: #161616;
+  --brand-cyan: #29abe2;
+  --brand-yellow: #ffe000;
+  --brand-cream: #faf7f2;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-orange-deep: var(--brand-orange-deep);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-cyan: var(--brand-cyan);
+  --color-brand-yellow: var(--brand-yellow);
+  --color-brand-cream: var(--brand-cream);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-anton);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Display headings use the heavy condensed face to match the bold graphics */
+.font-display {
+  font-family: var(--font-anton), Impact, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.01em;
 }

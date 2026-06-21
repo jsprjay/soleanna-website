@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Soleanna Run Club — Website
 
-## Getting Started
+A fast, single-page site for Soleanna Run Club. Built with Next.js + Tailwind CSS,
+deploys to Vercel.
 
-First, run the development server:
+## Run it locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build (what Vercel runs)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Updating the site (no coding needed for the common stuff)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### ➤ Update the monthly schedule — `data/schedule.ts`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This is the main file you'll touch. Each month:
 
-## Learn More
+1. Change `scheduleMonth` (e.g. `"July 2026"`).
+2. Replace the `events` list. Each event looks like:
 
-To learn more about Next.js, take a look at the following resources:
+   ```ts
+   {
+     date: "2026-07-04",                 // YYYY-MM-DD
+     title: "SRC x Someone",
+     subtitle: "Sunset 5K",              // optional
+     time: "7:00 PM",                    // or "TBD"
+     location: "Liberty State Park",     // or "Location TBD"
+   }
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Events sort by date automatically. "TBD" is fine for anything not announced yet.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### ➤ Club info & links — `data/club.ts`
 
-## Deploy on Vercel
+Name, tagline, the weekly **Track Tuesdays** details, and all links
+(shop, Instagram, Linktree) live here. Edit once, updates everywhere.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ➤ Logo
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The site currently uses a built-in SVG sun mark (`components/SunLogo.tsx`) as a
+stand-in. To use the real artwork, add the official logo to `public/` and swap
+the `<SunLogo />` usages in `Navbar.tsx`, `Hero.tsx`, and `Footer.tsx` for a
+Next.js `<Image>`.
+
+## Deploy
+
+Push to a Git repo and import it into [Vercel](https://vercel.com/new) — no config
+needed. Every push to the main branch redeploys automatically.
+
+## Structure
+
+```
+app/         layout (fonts, metadata) + page (composes sections) + globals.css
+components/  Navbar, Hero, About, TrackTuesdays, Schedule, ShopCTA, Footer, SunLogo
+data/        club.ts (info + links) · schedule.ts (monthly events)
+```
