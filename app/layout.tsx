@@ -16,16 +16,13 @@ const anton = Anton({
 });
 
 export const metadata: Metadata = {
-  title: `${club.name} — ${club.tagline}`,
+  title: club.name,
   description:
     "Soleanna Run Club is a Jersey-based community run club. Track Tuesdays every week, monthly events, 5Ks, collabs, and more. Building a community of winners.",
   openGraph: {
     title: club.name,
     description: club.tagline,
     type: "website",
-  },
-  icons: {
-    icon: "/favicon.ico",
   },
 };
 
