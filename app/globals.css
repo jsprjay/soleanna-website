@@ -44,3 +44,44 @@ body {
   font-family: var(--font-anton), Impact, "Arial Narrow Bold", sans-serif;
   letter-spacing: 0.01em;
 }
+
+/* Outlined display text — editorial contrast against solid fills */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--brand-cream);
+}
+@media (min-width: 768px) {
+  .text-outline {
+    -webkit-text-stroke: 3px var(--brand-cream);
+  }
+}
+
+/* Looping ticker — the inner row is duplicated, so -50% is one seamless lap */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+/* Slow rotating background mark */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 90s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-spin-slow {
+    animation: none;
+  }
+}

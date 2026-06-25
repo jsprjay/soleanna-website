@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import TrackTuesdays from "@/components/TrackTuesdays";
+import Gallery from "@/components/Gallery";
 import Schedule from "@/components/Schedule";
 import ShopCTA from "@/components/ShopCTA";
 import Footer from "@/components/Footer";
@@ -14,6 +15,7 @@ export default function Home() {
         <Hero />
         <About />
         <TrackTuesdays />
+        <Gallery />
         <Schedule />
         <ShopCTA />
       </main>

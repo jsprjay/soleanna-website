@@ -5,6 +5,7 @@ import { club } from "@/data/club";
 const navItems = [
   { label: "About", href: "#about" },
   { label: "Track Tuesdays", href: "#track-tuesdays" },
+  { label: "Gallery", href: "#gallery" },
   { label: "Schedule", href: "#schedule" },
 ];
 

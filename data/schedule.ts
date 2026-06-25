@@ -26,6 +26,49 @@ export interface RunEvent {
 
 export const scheduleMonth = "June 2026";
 
+const WEEKDAYS = [
+  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
+];
+const MONTHS = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+];
+
+/** Local midnight timestamp for an ISO "YYYY-MM-DD" — avoids timezone drift. */
+function toTime(iso: string) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d).getTime();
+}
+
+/**
+ * The soonest event on or after `now` (defaults to today), or `null` if
+ * every scheduled event is in the past.
+ */
+export function getNextEvent(now: Date = new Date()): RunEvent | null {
+  const today = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate()
+  ).getTime();
+  return (
+    [...events]
+      .filter((e) => toTime(e.date) >= today)
+      .sort((a, b) => toTime(a.date) - toTime(b.date))[0] ?? null
+  );
+}
+
+/** Day-of-week label, e.g. "Saturday", for an event's ISO date. */
+export function eventWeekday(iso: string) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return WEEKDAYS[new Date(y, m - 1, d).getDay()];
+}
+
+/** Short calendar label, e.g. "Jun 29", for an event's ISO date. */
+export function eventDateLabel(iso: string) {
+  const [, m, d] = iso.split("-").map(Number);
+  return `${MONTHS[m - 1]} ${d}`;
+}
+
 export const events: RunEvent[] = [
   {
     date: "2026-06-06",
