@@ -7,6 +7,10 @@ import Schedule from "@/components/Schedule";
 import ShopCTA from "@/components/ShopCTA";
 import Footer from "@/components/Footer";
 
+// The hero ticket and schedule read live from the database each request,
+// so the page always reflects the latest edits.
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <>

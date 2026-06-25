@@ -42,8 +42,17 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="mt-10 border-t border-brand-cream/10 pt-6 text-center text-xs text-brand-cream/50">
-          © {new Date().getFullYear()} Soleanna Run Club. {club.links.instagramHandle}
+        <div className="mt-10 flex flex-col items-center justify-between gap-2 border-t border-brand-cream/10 pt-6 text-center text-xs text-brand-cream/50 sm:flex-row">
+          <span>
+            © {new Date().getFullYear()} Soleanna Run Club.{" "}
+            {club.links.instagramHandle}
+          </span>
+          <Link
+            href="/admin"
+            className="font-semibold text-brand-cream/40 transition hover:text-brand-orange"
+          >
+            Admin
+          </Link>
         </div>
       </div>
     </footer>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import SunLogo from "./SunLogo";
 import { club } from "@/data/club";
 import { getNextEvent, eventWeekday, eventDateLabel } from "@/data/schedule";
+import { getSchedule } from "@/data/db";
 
 const r = club.recurring;
 
@@ -14,9 +15,10 @@ const ticker = [
   "Building a community of winners",
 ];
 
-export default function Hero() {
+export default async function Hero() {
   // Spotlight the soonest scheduled event; fall back to the weekly meetup.
-  const next = getNextEvent();
+  const { events } = await getSchedule();
+  const next = getNextEvent(events);
   const ticket = next
     ? {
         badge: "Next up",
@@ -45,9 +47,6 @@ export default function Hero() {
         className="animate-spin-slow pointer-events-none absolute -right-28 -top-28 h-[26rem] w-[26rem] text-brand-orange/[0.07] sm:-right-20 sm:h-[34rem] sm:w-[34rem]"
         rays={16}
       />
-      {/* Thin accent rule down the left gutter */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-brand-orange/60" />
-
       <div className="relative mx-auto grid max-w-6xl gap-12 px-4 pb-0 pt-16 sm:px-6 sm:pt-24 lg:grid-cols-12 lg:gap-8">
         {/* ── Headline column ───────────────────────────── */}
         <div className="lg:col-span-7">
